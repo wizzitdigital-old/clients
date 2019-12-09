@@ -11,6 +11,9 @@
   "files": [
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
@@ -27,5 +30,6 @@
   },
   "scripts": {
     "tsc": "tsc"
-  }
+  },
+  "gitHead": "38fbc0d053f6f16ba1e0d7cd378445099169d3d2"
 }
