@@ -1,0 +1,17 @@
+{
+  "name": "@wizzit-clients/aken_proxy",
+  "version": "0.0.0",
+  "description": "GraphQL client to Aken Proxy",
+  "license": "MIT",
+  "main": "lib/client.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  }
+}

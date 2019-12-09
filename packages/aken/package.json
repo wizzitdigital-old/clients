@@ -1,5 +1,5 @@
 {
-  "name": "aken",
+  "name": "@wizzit-clients/aken",
   "version": "1.0.0",
   "description": "Graphql aken client",
   "main": "src/client.js",
@@ -17,5 +17,12 @@
   "devDependencies": {
     "dotenv": "^8.2.0",
     "graphql-tag": "^2.10.1"
-  }
+  },
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ]
 }

@@ -14,11 +14,6 @@ const aken = axios.create({
 });
 
 const createSession = args => {
-  const response = {
-    ok: false,
-    data: null
-  };
-
   const { ref_id, msisdn } = args;
 
   debug(`${ref_id}: Creating session for ${msisdn}`);
@@ -27,20 +22,24 @@ const createSession = args => {
     .post(`/api/v1/session`, args)
     .then(res => {
       if ([200, 201].includes(res.statusCode)) {
-        debug(`${ref_id}: Aken session ${res.data.url}`);
-        return Object.assign(response, { data: res.data });
+        debug(`${ref_id}: The aken session url is ${res.data.url}`);
+        return { data: res.data };
       }
+
+      const querySpace = R.pick(["statusCode"], res);
+      debug(`${ref_id}: Unhandled response - %o`, querySpace);
+      return { error: "Unhandled response" };
     })
     .catch(e => {
       if (e.response.status === 401) {
-        debug(`${ref_id}: Unauthorized access`);
-        return Object.assign(response, { error: "Invalid aken credentials" });
+        debug(`${ref_id}: Aken basic auth credentials are not working`);
+        return { error: "Invalid aken credentials" };
       }
 
+      debug(`${ref_id}: The Aken http request failed`);
       console.error(e);
-      return Object.assign(response, { error: "Server error" });
-    })
-    .then(() => response);
+      return { error: "Server error" };
+    });
 };
 
 const createPaySession = async (_, args, _cxt) => {
@@ -53,6 +52,7 @@ const createPaySession = async (_, args, _cxt) => {
     ...args.operation
   };
 
+  debug(`${params.ref_id}: Got pay request`);
   return createSession(params);
 };
 
