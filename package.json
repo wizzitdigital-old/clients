@@ -7,7 +7,9 @@
     "typescript": "^3.7.3"
   },
   "scripts": {
+    "login": "npm login --scope=wizzt-clients",
     "publish": "lerna run tsc && lerna publish",
     "install": "npx lerna clean -y && npx lerna bootstrap --hoist"
-  }
+  },
+  "dependencies": {}
 }
