@@ -8,8 +8,8 @@
   },
   "scripts": {
     "login": "npm login --scope=wizzt-clients",
-    "publish": "lerna run tsc && lerna publish",
-    "install": "npx lerna clean -y && npx lerna bootstrap --hoist"
+    "release": "lerna run tsc && lerna publish",
+    "postinstall": "npx lerna clean -y && npx lerna bootstrap --hoist"
   },
   "dependencies": {}
 }
