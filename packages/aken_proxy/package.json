@@ -1,6 +1,6 @@
 {
   "name": "@wizzit-clients/aken_proxy",
-  "version": "0.0.2",
+  "version": "0.0.3-alpha.0",
   "description": "GraphQL client to Aken Proxy",
   "license": "MIT",
   "main": "lib/client.js",
