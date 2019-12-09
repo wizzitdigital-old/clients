@@ -1,6 +1,6 @@
 {
   "name": "@wizzit-clients/core",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "GraphQL client abstraction",
   "main": "src/core.ts",
   "typings": "src/core.d.ts",
