@@ -5,20 +5,30 @@
 ## Usage
 
 ```js
-const aken = require("@wizzit/aken");
+const aken = require("@wizzit/aken-client");
 const gql = require("graphql-tag");
 
 const CREATE_PAYMENT = gql`
-  mutation ($pay: PayInput!) {
-    createPaySession($pay) @client {
+  mutation CREATE_PAYMENT($pay: PayInput!) {
+    createPaySession(operation: $pay) {
       url
+      error
     }
   }
 `;
 
 async function main() {
-  const result = await aken.createPaySession({
-    msisdn: "27745000000",
+  const pay = {
+    msisdn: "27740000000"
+  };
+
+  const { data: { createPaySession } } = await aken.mutate({
+    mutation: CREATE_PAYMENT,
+    variables: { pay }
   });
+
+  console.log(createPaySession);
 }
+
+main();
 ```

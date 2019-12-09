@@ -24,7 +24,8 @@ input PayInput {
 }
 
 type Session {
-  url: String!
+  error: String
+  url: String
 }
 
 type Query {

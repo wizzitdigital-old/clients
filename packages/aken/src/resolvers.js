@@ -13,32 +13,47 @@ const aken = axios.create({
   responseType: "json"
 });
 
+const createSession = args => {
+  const response = {
+    ok: false,
+    data: null
+  };
+
+  const { ref_id, msisdn } = args;
+
+  debug(`${ref_id}: Creating session for ${msisdn}`);
+
+  return aken
+    .post(`/api/v1/session`, args)
+    .then(res => {
+      if ([200, 201].includes(res.statusCode)) {
+        debug(`${ref_id}: Aken session ${res.data.url}`);
+        return Object.assign(response, { data: res.data });
+      }
+    })
+    .catch(e => {
+      if (e.response.status === 401) {
+        debug(`${ref_id}: Unauthorized access`);
+        return Object.assign(response, { error: "Invalid aken credentials" });
+      }
+
+      console.error(e);
+      return Object.assign(response, { error: "Server error" });
+    })
+    .then(() => response);
+};
+
 const createPaySession = async (_, args, _cxt) => {
   const params = {
     ref_id: uuid(),
     ttl: 60000,
     wamsisdn,
+    operation: "pay",
     // NOTE: Client provided args will clobber above.
-    ...args
+    ...args.operation
   };
 
-  const { ref_id, msisdn } = params;
-
-  debug(`${ref_id}: creating session for ${msisdn}`);
-  const res = aken.post(`/api/v1/session`, params);
-
-  switch (res.statusCode) {
-    case 200:
-    case 201:
-      debug(`${ref_id}: aken session ${res.data.url}`);
-      return Object.assign({}, res.data, { ref_id });
-    case 401:
-      debug(`${ref_id}: unauthorized access`);
-      return res.sendStatus(401);
-    default:
-      debug(`${ref_id}: unhandled http response: ${res.status}`);
-      throw new Error(`unhandled http response: ${res.status}`);
-  }
+  return createSession(params);
 };
 
 const resolvers = {

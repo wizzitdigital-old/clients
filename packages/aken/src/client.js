@@ -19,11 +19,11 @@ const schema = makeExecutableSchema({
 });
 
 const debugLink = new ApolloLink((operation, forward) => {
-  const op = operation.operationName || "Unknown Operation";
+  const op = operation.operationName || "Unknown";
   // TODO: Add request ref id
-  debug("REQ", op, operation.query);
+  debug("REQ", op, JSON.stringify(operation.variables));
   return forward(operation).map(data => {
-    debug("RES", op);
+    debug("RES", op, JSON.stringify(data));
     return data;
   });
 });

@@ -1,25 +1,31 @@
+require("dotenv").config({ path: __dirname + "/../.env.staging" });
+
 const aken = require("../src/client");
 const gql = require("graphql-tag");
+const config = require("../src/config");
 
 const CREATE_PAYMENT = gql`
-  mutation($pay: PayInput!) {
+  mutation CREATE_PAYMENT($pay: PayInput!) {
     createPaySession(operation: $pay) {
       url
+      error
     }
   }
 `;
 
 async function main() {
   const pay = {
-    msisdn: "27745000000"
+    msisdn: "27740000000"
   };
 
-  const result = await aken.mutate({
+  const {
+    data: { createPaySession }
+  } = await aken.mutate({
     mutation: CREATE_PAYMENT,
     variables: { pay }
   });
 
-  console.log({ result });
+  console.log(createPaySession);
 }
 
 main();
