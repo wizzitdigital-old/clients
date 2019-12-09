@@ -1,7 +1,7 @@
 {
   "name": "@wizzit-clients/aken",
   "private": true,
-  "version": "0.0.3-alpha.0",
+  "version": "0.0.3-alpha.1",
   "description": "Graphql aken client",
   "main": "src/client.js",
   "dependencies": {
