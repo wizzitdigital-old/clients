@@ -2,6 +2,8 @@
 
 ## Usage
 
+Basic client
+
 ```
 import gql from "graphql-tag";
 import { createClient } from "@wizzit-clients/core";
@@ -19,5 +21,22 @@ export default createClient({
   version,
   typeDefs,
   resolvers
+})
+```
+
+Stitch together client with remote schema
+
+```
+import gql from "graphql-tag";
+import { createClientFromSchemas } from "@wizzit-clients/core";
+import example from "@wizzit-clients/example";
+
+export default createClientFromSchemas({
+  remoteSchemas: [
+    { uri: "https://localhost:4000/graphql" },
+  ],
+  localSchemas: [
+    example,
+  ],
 })
 ```

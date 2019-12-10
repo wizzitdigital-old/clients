@@ -1,7 +1,7 @@
 import Debug from "debug";
-import axios, { AxiosBasicCredentials } from "axios";
+import axios from "axios";
 import config from "./config";
-import { pick, omit } from "ramda";
+import { pick } from "ramda";
 
 const { url } = config;
 const debug = Debug("aken_proxy:client");

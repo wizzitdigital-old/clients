@@ -1,7 +1,4 @@
 import gql from "graphql-tag";
-import { createClient } from "@wizzit-clients/core";
-import { name, version } from "./meta.json";
-import { resolvers } from "./resolvers";
 
 export const typeDefs = gql`
   input DialogContextInput {
@@ -35,10 +32,3 @@ export const typeDefs = gql`
     createDialogue(context: DialogContextInput!): Session!
   }
 `;
-
-export const client = createClient({
-  name,
-  version,
-  typeDefs,
-  resolvers
-});

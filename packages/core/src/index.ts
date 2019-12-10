@@ -1,4 +1,3 @@
-import { createClient } from "./core";
-
-export { createClient };
+import { createClient, createClientFromSchemas } from "./core";
+export { createClient, createClientFromSchemas };
 export default createClient;
