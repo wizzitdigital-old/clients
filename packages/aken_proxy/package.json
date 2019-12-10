@@ -1,10 +1,10 @@
 {
   "name": "@wizzit-clients/aken_proxy",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Graphql aken proxy client",
   "main": "lib/index",
   "dependencies": {
-    "@wizzit-clients/core": "^0.0.4",
+    "@wizzit-clients/core": "^0.0.5",
     "axios": "^0.19.0",
     "graphql-tag": "^2.10.1"
   },
