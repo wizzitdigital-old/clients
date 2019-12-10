@@ -1,11 +1,3 @@
-# Aken Proxy
+# Aken Proxy Client
 
-GraphQL client to Aken Proxy
-
-## Usage
-
-```
-const akenProxy = require('aken_proxy');
-
-// TODO: DEMONSTRATE API
-```
+> Graphql aken proxy client

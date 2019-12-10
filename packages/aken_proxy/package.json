@@ -1,19 +1,22 @@
 {
   "name": "@wizzit-clients/aken_proxy",
-  "private": true,
-  "version": "0.0.3-alpha.1",
-  "description": "GraphQL client to Aken Proxy",
-  "license": "MIT",
-  "main": "lib/client.js",
+  "version": "0.0.3",
+  "description": "Graphql aken proxy client",
+  "main": "lib/index",
+  "dependencies": {
+    "@wizzit-clients/core": "^0.0.3",
+    "axios": "^0.19.0",
+    "graphql-tag": "^2.10.1"
+  },
   "directories": {
-    "lib": "lib",
-    "test": "__tests__"
+    "lib": "lib"
   },
   "files": [
     "lib"
   ],
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
-  },
-  "gitHead": "ba7300ab803474b18e4cd3fe17e3a61fc546d61e"
+    "clean": "rm -rf ./lib",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "build": "npm run clean && npm run compile"
+  }
 }
