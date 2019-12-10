@@ -18,6 +18,6 @@
     "generate-meta": "node ./scripts/generate-meta.js",
     "clean": "rm -rf ./lib",
     "compile": "tsc -p ./tsconfig.build.json",
-    "build": "npm run generate-meta && npm run clean && npm run compile"
+    "build": "npm run clean && npm run compile"
   }
 }
