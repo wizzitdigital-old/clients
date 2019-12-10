@@ -1,6 +1,7 @@
 require("dotenv").config({ path: __dirname + "/.env.staging" });
 
-const akenProxy = require("./lib/src/index").default;
+const akenProxy = require("./lib/index");
+const { createClient } = require("../core/lib/index");
 const gql = require("graphql-tag");
 
 const CREATE_DIALOGUE = gql`
@@ -12,6 +13,8 @@ const CREATE_DIALOGUE = gql`
 `;
 
 async function main() {
+  const client = createClient(akenProxy);
+
   const context = {
     merchant_id: "393f4c83-eeee-49e4-9c82-27639828d37a",
     password: "018231092303",
@@ -34,7 +37,7 @@ async function main() {
 
   const {
     data: { createDialogue }
-  } = await akenProxy.mutate({
+  } = await client.mutate({
     mutation: CREATE_DIALOGUE,
     variables: { context }
   });
