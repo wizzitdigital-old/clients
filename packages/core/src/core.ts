@@ -6,6 +6,7 @@ import { SchemaLink } from "apollo-link-schema";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ClientOptions } from "./core.d";
+import { pick } from "ramda";
 import fetch from "node-fetch";
 import {
   makeExecutableSchema,
@@ -45,7 +46,7 @@ export function createClient(options: ClientOptions): any {
 }
 
 export async function createClientFromSchemas(options: any): Promise<any> {
-  const { remoteSchemas = [], localSchemas = [] } = options;
+  const { remoteSchemas = [], localSchemas = [], links = [] } = options;
   const schemas: GraphQLSchema[] = [];
 
   for (const api of remoteSchemas) {
@@ -60,12 +61,13 @@ export async function createClientFromSchemas(options: any): Promise<any> {
 
   const cache = new InMemoryCache();
   const schema = mergeSchemas({ schemas });
-  const link = new SchemaLink({ schema });
+  const schemaLink = new SchemaLink({ schema });
+  const link = ApolloLink.from([...links, schemaLink]);
 
   return new ApolloClient({
     cache,
     link,
-    ...options
+    ...pick([], options)
   });
 }
 
