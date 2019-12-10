@@ -1,11 +1,11 @@
 {
   "name": "@wizzit-clients/aken",
   "private": true,
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Graphql aken client",
   "main": "lib/index",
   "dependencies": {
-    "@wizzit-clients/core": "^0.0.5",
+    "@wizzit-clients/core": "^0.0.6",
     "axios": "^0.19.0",
     "debug": "^4.1.1",
     "graphql-tag": "^2.10.1"
