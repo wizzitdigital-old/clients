@@ -1,6 +1,5 @@
 import Debug from "debug";
 import UUID from "uuid";
-import { readFileSync } from "fs";
 import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { makeExecutableSchema } from "graphql-tools";
@@ -9,16 +8,18 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { ClientOptions } from "./core.d";
 
 export function createClient(options: ClientOptions): any {
-  const { resolvers, name, schemaFile } = options;
+  const { resolvers, name, typeDefs } = options;
   const debug = Debug(`client:${name}`);
   const cache = new InMemoryCache();
-  const typeDefs = readFileSync(schemaFile, "UTF-8");
   const schema = makeExecutableSchema({ typeDefs, resolvers });
   const link = ApolloLink.from([
     new ApolloLink(createApolloDebugLink(debug)),
     new SchemaLink({ schema })
   ]);
 
+  // NOTE: https://www.apollographql.com/docs/react/api/apollo-client/
+  // NOTE: https://www.apollographql.com/docs/link/links/state/
+  // NOTE: https://github.com/hasura/client-side-graphql/
   return new ApolloClient({
     cache,
     link,

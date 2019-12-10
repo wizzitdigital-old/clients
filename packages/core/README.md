@@ -1,11 +1,23 @@
-# `core`
-
-> TODO: description
+# GraphQL Client Wrapper
 
 ## Usage
 
 ```
-const core = require('core');
+import gql from "graphql-tag";
+import { createClient } from "@wizzit-clients/core";
+import { name, version } from "./package.json";
+import { resolvers } from "./resolvers"
 
-// TODO: DEMONSTRATE API
+const typeDefs = gql`
+  type Query {
+    ping: Boolean!
+  }
+`
+
+export default createClient({
+  name,
+  version,
+  typeDefs,
+  resolvers
+})
 ```

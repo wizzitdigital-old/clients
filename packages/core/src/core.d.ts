@@ -1,6 +1,6 @@
 export type ClientOptions = {
   name: string;
   version: string;
-  schemaFile: string;
+  typeDefs: any;
   resolvers: any;
 };

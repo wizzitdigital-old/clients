@@ -1,3 +1,5 @@
+import { AkenClientConfig } from "./aken.d";
+
 const config = {
   url: process.env.AKEN_URL || "http://localhost:4000",
   auth: {
@@ -7,4 +9,4 @@ const config = {
   wamsisdn: process.env.AKEN_MSISDN
 };
 
-module.exports = config;
+export default config as AkenClientConfig;

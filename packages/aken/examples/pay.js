@@ -1,8 +1,8 @@
 require("dotenv").config({ path: __dirname + "/../.env.staging" });
 
-const aken = require("../src/client");
+const config = require("../lib/src/config");
+const aken = require("../lib/src/index").default;
 const gql = require("graphql-tag");
-const config = require("../src/config");
 
 const CREATE_PAYMENT = gql`
   mutation CREATE_PAYMENT($pay: PayInput!) {

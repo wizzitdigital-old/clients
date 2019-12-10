@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+    "target": "esnext",
+    "module": "commonjs",
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "esModuleInterop": true
+  },
+  "exclude": ["node_modules", "lib", "**/*.spec.ts"]
+}

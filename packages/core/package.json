@@ -2,8 +2,7 @@
   "name": "@wizzit-clients/core",
   "version": "0.0.3-alpha.1",
   "description": "GraphQL client abstraction",
-  "main": "src/core.ts",
-  "typings": "src/core.d.ts",
+  "main": "lib/index",
   "directories": {
     "lib": "lib",
     "test": "__tests__"
@@ -29,7 +28,9 @@
     "@types/uuid": "^3.4.6"
   },
   "scripts": {
-    "tsc": "tsc"
+    "clean": "rm -rf ./lib",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "build": "npm run clean && npm run compile"
   },
   "gitHead": "ba7300ab803474b18e4cd3fe17e3a61fc546d61e"
 }

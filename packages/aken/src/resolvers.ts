@@ -1,10 +1,11 @@
-const debug = require("debug")("aken:client");
-const R = require("ramda");
-const uuid = require("uuid/v4");
-const axios = require("axios");
-const config = require("./config.js");
+import Debug from "debug";
+import uuid from "uuid/v4";
+import axios from "axios";
+import config from "./config";
+import { pick } from "ramda";
 
 const { url, auth, wamsisdn } = config;
+const debug = Debug("aken:client");
 
 const aken = axios.create({
   baseURL: url,
@@ -13,7 +14,7 @@ const aken = axios.create({
   responseType: "json"
 });
 
-const createSession = args => {
+const createSession = async (args: any) => {
   const { ref_id, msisdn } = args;
 
   debug(`${ref_id}: Creating session for ${msisdn}`);
@@ -21,12 +22,12 @@ const createSession = args => {
   return aken
     .post(`/api/v1/session`, args)
     .then(res => {
-      if ([200, 201].includes(res.statusCode)) {
+      if ([200, 201].includes(res.status)) {
         debug(`${ref_id}: The aken session url is ${res.data.url}`);
         return { data: res.data };
       }
 
-      const querySpace = R.pick(["statusCode"], res);
+      const querySpace = pick(["status", "statusText"], res);
       debug(`${ref_id}: Unhandled response - %o`, querySpace);
       return { error: "Unhandled response" };
     })
@@ -42,7 +43,7 @@ const createSession = args => {
     });
 };
 
-const createPaySession = async (_, args, _cxt) => {
+const createPaySession = async (_: any, args: any, _cxt: any) => {
   const params = {
     ref_id: uuid(),
     ttl: 60000,
@@ -56,10 +57,8 @@ const createPaySession = async (_, args, _cxt) => {
   return createSession(params);
 };
 
-const resolvers = {
+export const resolvers = {
   Mutation: {
     createPaySession
   }
 };
-
-module.exports = resolvers;
