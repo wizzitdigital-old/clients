@@ -1,6 +1,6 @@
 {
   "name": "@wizzit-clients/core",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "GraphQL client abstraction",
   "main": "lib/index",
   "directories": {
