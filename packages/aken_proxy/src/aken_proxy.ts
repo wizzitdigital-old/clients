@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 import { createClient } from "@wizzit-clients/core";
-import { name, version } from "../package.json";
+import { name, version } from "./meta.json";
 import { resolvers } from "./resolvers";
 
 export const typeDefs = gql`
