@@ -1,0 +1,35 @@
+{
+  "name": "@wizzit-clients/core",
+  "version": "0.0.4",
+  "description": "GraphQL client abstraction",
+  "main": "lib/index",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "apollo-cache-inmemory": "^1.6.3",
+    "apollo-client": "^2.6.4",
+    "apollo-link-schema": "^1.2.4",
+    "debug": "^4.1.1",
+    "graphql": "^14.5.8",
+    "graphql-tools": "^4.0.6",
+    "ramda": "^0.26.1",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/uuid": "^3.4.6"
+  },
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "build": "npm run clean && npm run compile"
+  }
+}

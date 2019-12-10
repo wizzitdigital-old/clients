@@ -1,0 +1,25 @@
+{
+  "name": "@wizzit-clients/aken_proxy",
+  "version": "0.0.4",
+  "description": "Graphql aken proxy client",
+  "main": "lib/index",
+  "dependencies": {
+    "@wizzit-clients/core": "^0.0.4",
+    "axios": "^0.19.0",
+    "graphql-tag": "^2.10.1"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "files": [
+    "lib"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "clean": "rm -rf ./lib",
+    "compile": "tsc -p ./tsconfig.build.json",
+    "build": "npm run clean && npm run compile"
+  }
+}
